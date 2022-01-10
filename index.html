@@ -68,7 +68,7 @@
 			words.forEach(w => {
 				let letters = w.split('')
 				let row = getRandomRow()
-				let start = getRowStart(row, w)
+				let start = getRandomColumn(row, w)
 				rowsTaken.push(row)
 				for (let i=0; i<letters.length; i++) {
 					table[row][i+start] = letters[i]
@@ -84,12 +84,11 @@
 				return row
 			}
 
-			function getRowStart(row, word) {
+			function getRandomColumn(row, word) {
 				let column = table[row].indexOf(table[row][Math.floor(Math.random()*table[row].length)])
-				if ((column + word.length) > table[row].length) return getRowStart(row, word)
+				if ((column + word.length) > table[row].length) return getRandomColumn(row, word)
 				return column
 			}
-
 
 			document.onclick = e => {
 				if (e.target.classList.contains('active')) {
@@ -109,11 +108,8 @@
 					let match = letters == picked
 					if (match) {
 						foundWords++
-						if (foundWords == words.length) {
-							audio.src = './fanfare.mp3'
-						} else {
-							audio.src = './success.mp3'
-						}
+						if (foundWords == words.length) audio.src = './fanfare.mp3'
+						else audio.src = './success.mp3'
 						audio.currentTime = 0
 						audio.play()
 						lettersPicked.splice(0)
@@ -126,7 +122,6 @@
 					return match
 				})
 			}
-
 		</script>
 	</body>
 </html>
