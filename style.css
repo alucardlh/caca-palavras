@@ -1,0 +1,37 @@
+body {
+	background-color: #121212;
+}
+main {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: fit-content;
+	height: fit-content;
+	transform: translate(-50%, -50%);
+}
+span {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	width: 48px;
+	height: 40px;
+	flex: 1 1 0;
+	color: whitesmoke;
+	border: 2px solid silver;
+	border-radius: 4px;
+	margin: 2px;
+	font-weight: bold;
+	font-size: 1.75rem;
+	user-select: none;
+	transition: all 250ms ease-in-out;
+}
+span:not(.found) {
+	cursor: pointer;
+}
+span:hover, span.active {
+	background-color: cyan;
+}
+span.found {
+	color: #fff;
+	background-color: magenta;
+}
